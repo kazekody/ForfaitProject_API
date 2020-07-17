@@ -89,7 +89,6 @@ public class ControllerForfait {
     public Response meilleurForfait(@PathVariable("montant") double montant, @PathVariable("dure")double dure,
     @PathVariable("prioriteData")double prioriteData, @PathVariable("prioriteSms")double prioriteSms,
     @PathVariable("prioriteAppel")double prioriteAppel) {
-        double recharge=0;
         Response Mango, Hemle, reponse = new Response();
         List<Forfait> listMango = new ArrayList<Forfait>();
         List<Forfait>  listHemle = new ArrayList<Forfait>();
@@ -120,8 +119,8 @@ public class ControllerForfait {
                 minListHemle.add(forfait);
              }
         }
-        System.out.println(minListMango.size());
-        System.out.println(minListHemle.size());
+        /*System.out.println(minListMango.size());
+        System.out.println(minListHemle.size());*/
         double[] tabPriorite = new double[3];
         tabPriorite[0] = prioriteAppel;
         tabPriorite[1] = prioriteSms;
@@ -150,90 +149,84 @@ public class ControllerForfait {
                List <Forfait> listM2 = new ArrayList<Forfait>();
                List <Forfait> listH3 = new ArrayList<Forfait>();
                List <Forfait> listM3 = new ArrayList<Forfait>();
-               listH1 = Tri.triSms(minListHemle);
-               listM1 = Tri.triSms(minListMango);
-               listH2 = Tri.triAppel(minListHemle);
-               listM2 = Tri.triAppel(minListMango);
-               listH3 = Tri.triData(minListHemle);
-               listM3 = Tri.triData(minListMango);
-                int[][] tabOccurH = new int[minListHemle.size()][minListHemle.size()];
-                int[][] tabOccurM = new int[minListHemle.size()][minListHemle.size()];
-                int k = 0;
+               listH1.addAll(Tri.triSms(minListHemle));
+               System.out.println(listH1);
+               listM1.addAll(Tri.triSms(minListMango));
+               listH2.addAll(Tri.triAppel(minListHemle));
+               listM2.addAll(Tri.triAppel(minListMango));
+               listH3.addAll(Tri.triData(minListHemle));
+               listM3.addAll(Tri.triData(minListMango));
+               List <Forfait> FlistH = new ArrayList<Forfait>();
+               List <Forfait> FlistM = new ArrayList<Forfait>();
+               double recharge = montant;
                 int c;
                 do {
                      c = 0;
                     for(int i = 0; i <= listH1.size() -1 ; i++){
-                        if (listH1.get(i).getPrix() < recharge){
-                            tabOccurH[0][k] = (int) listH1.get(i).getIdForfait();
-                            tabOccurH[1][k] = tabOccurH[1][k] +1 ;
+                        if (listH1.get(i).getPrix() <= recharge){
+                           FlistH.add(listH1.get(i));
                             recharge = recharge - listH1.get(i).getPrix();
                             c++;
-                            k++;
                             i = listH1.size();
                         }
                     }
 
                     for(int i = 0; i <= listH2.size() -1 ; i++){
                         if (listH1.get(i).getPrix() < recharge){
-                            tabOccurH[0][k] = (int) listH2.get(i).getIdForfait();
-                            tabOccurH[1][k] = tabOccurH[1][k] +1 ;
+                            FlistH.add(listH2.get(i));
                             recharge = recharge - listH2.get(i).getPrix();
                             c++;
-                            k++;
+                            
                             i = listH2.size();
                         }
                     }
 
                     for(int i = 0; i <= listH3.size() -1 ; i++){
                         if (listH1.get(i).getPrix() < recharge){
-                            tabOccurH[0][k] = (int) listH3.get(i).getIdForfait();
-                            tabOccurH[1][k] = tabOccurH[1][k] +1 ;
+                            FlistH.add(listH3.get(i));
                             recharge = recharge - listH3.get(i).getPrix();
                             c++;
-                            k++;
+                            
                             i = listH3.size();
                         }
                     }
-                    
                 }while(recharge!=0 && c!=0);
                 
                 do {
                     c = 0;
                    for(int i = 0; i <= listM1.size() -1 ; i++){
                        if (listM1.get(i).getPrix() < recharge){
-                           tabOccurM[0][k] = (int) listM1.get(i).getIdForfait();
-                           tabOccurM[1][k] = tabOccurH[1][k] +1 ;
+                        FlistM.add(listM1.get(i));
                            recharge = recharge - listM1.get(i).getPrix();
                            c++;
-                           k++;
                            i = listM1.size();
                        }
                    }
 
                    for(int i = 0; i <= listM2.size() -1 ; i++){
                        if (listM2.get(i).getPrix() < recharge){
-                           tabOccurM[0][k] = (int) listM2.get(i).getIdForfait();
-                           tabOccurM[1][k] = tabOccurH[1][k] +1 ;
+                        FlistM.add(listM2.get(i));
                            recharge = recharge - listM2.get(i).getPrix();
                            c++;
-                           k++;
                            i = listM2.size();
                        }
                    }
 
                    for(int i = 0; i <= listM3.size() -1 ; i++){
                        if (listM3.get(i).getPrix() < recharge){
-                           tabOccurM[0][k] = (int) listM3.get(i).getIdForfait();
-                           tabOccurM[1][k] = tabOccurH[1][k] +1 ;
+                        FlistM.add(listM3.get(i));
                            recharge = recharge - listM3.get(i).getPrix();
                            c++;
-                           k++;
                            i = listM3.size();
                        }
                    }
                    
                }while(recharge!=0 && c!=0);
-                 
+                
+               System.out.println(FlistH);
+               //System.out.println(FlistM);
+              
+               
             }
             if(tabPriorite[2] > tabPriorite[0] && tabPriorite[0] > tabPriorite[1]){
                 
