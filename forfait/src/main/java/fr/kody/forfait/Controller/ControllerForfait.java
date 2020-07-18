@@ -131,16 +131,344 @@ public class ControllerForfait {
 
          if (prioriteAppel != prioriteData && prioriteAppel != prioriteSms && prioriteData != prioriteSms){
             if(tabPriorite[0] > tabPriorite[1] && tabPriorite[1] > tabPriorite[2]){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triAppel(minListHemle));
+                listM1.addAll(Tri.triAppel(minListMango));
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             
+                             i = listH2.size();
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             
+                             i = listH3.size();
+                         }
+                     }
+                 }while(rechargeH!=0 && c!=0);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
 
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
             }
             if(tabPriorite[1] > tabPriorite[2] && tabPriorite[2] > tabPriorite[0]){
-                
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triData(minListHemle));
+                listM2.addAll(Tri.triData(minListMango));
+                listH3.addAll(Tri.triAppel(minListHemle));
+                listM3.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             
+                             i = listH2.size();
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             
+                             i = listH3.size();
+                         }
+                     }
+                 }while(rechargeH!=0 && c!=0);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
             }
             if(tabPriorite[2] > tabPriorite[1] && tabPriorite[1] > tabPriorite[0]){
-                
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triData(minListHemle));
+                listM1.addAll(Tri.triData(minListMango));
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triAppel(minListHemle));
+                listM3.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             
+                             i = listH2.size();
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             
+                             i = listH3.size();
+                         }
+                     }
+                 }while(rechargeH!=0 && c!=0);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
             }
             if(tabPriorite[0] > tabPriorite[2] && tabPriorite[2] > tabPriorite[1]){
-                
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triAppel(minListHemle));
+                listM1.addAll(Tri.triAppel(minListMango));
+                listH2.addAll(Tri.triData(minListHemle));
+                listM2.addAll(Tri.triData(minListMango));
+                listH3.addAll(Tri.triSms(minListHemle));
+                listM3.addAll(Tri.triSms(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             
+                             i = listH2.size();
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             
+                             i = listH3.size();
+                         }
+                     }
+                 }while(rechargeH!=0 && c!=0);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
             }
             if(tabPriorite[1] > tabPriorite[0] && tabPriorite[0] > tabPriorite[2]){
                List <Forfait> listH1 = new ArrayList<Forfait>();
@@ -150,7 +478,6 @@ public class ControllerForfait {
                List <Forfait> listH3 = new ArrayList<Forfait>();
                List <Forfait> listM3 = new ArrayList<Forfait>();
                listH1.addAll(Tri.triSms(minListHemle));
-               System.out.println(listH1);
                listM1.addAll(Tri.triSms(minListMango));
                listH2.addAll(Tri.triAppel(minListHemle));
                listM2.addAll(Tri.triAppel(minListMango));
@@ -158,84 +485,2965 @@ public class ControllerForfait {
                listM3.addAll(Tri.triData(minListMango));
                List <Forfait> FlistH = new ArrayList<Forfait>();
                List <Forfait> FlistM = new ArrayList<Forfait>();
-               double recharge = montant;
+               double rechargeH = montant;
+               double rechargeM = montant;
                 int c;
                 do {
                      c = 0;
                     for(int i = 0; i <= listH1.size() -1 ; i++){
-                        if (listH1.get(i).getPrix() <= recharge){
+                        if (listH1.get(i).getPrix() <= rechargeH){
                            FlistH.add(listH1.get(i));
-                            recharge = recharge - listH1.get(i).getPrix();
+                           rechargeH = rechargeH - listH1.get(i).getPrix();
                             c++;
                             i = listH1.size();
                         }
                     }
 
-                    for(int i = 0; i <= listH2.size() -1 ; i++){
-                        if (listH1.get(i).getPrix() < recharge){
+                    for(int i = 2; i <= listH2.size() -1 ; i++){
+                        if (listH2.get(i).getPrix() <=rechargeH){
                             FlistH.add(listH2.get(i));
-                            recharge = recharge - listH2.get(i).getPrix();
+                            rechargeH = rechargeH - listH2.get(i).getPrix();
                             c++;
                             
                             i = listH2.size();
                         }
                     }
 
-                    for(int i = 0; i <= listH3.size() -1 ; i++){
-                        if (listH1.get(i).getPrix() < recharge){
+                    for(int i = 3; i <= listH3.size() -1 ; i++){
+                        if (listH3.get(i).getPrix() <=rechargeH){
                             FlistH.add(listH3.get(i));
-                            recharge = recharge - listH3.get(i).getPrix();
+                            rechargeH = rechargeH - listH3.get(i).getPrix();
                             c++;
                             
                             i = listH3.size();
                         }
                     }
-                }while(recharge!=0 && c!=0);
+                }while(rechargeH!=0 && c!=0);
                 
                 do {
                     c = 0;
                    for(int i = 0; i <= listM1.size() -1 ; i++){
-                       if (listM1.get(i).getPrix() < recharge){
+                       if (listM1.get(i).getPrix() <=rechargeM){
                         FlistM.add(listM1.get(i));
-                           recharge = recharge - listM1.get(i).getPrix();
+                        rechargeM = rechargeM - listM1.get(i).getPrix();
                            c++;
                            i = listM1.size();
                        }
                    }
 
-                   for(int i = 0; i <= listM2.size() -1 ; i++){
-                       if (listM2.get(i).getPrix() < recharge){
+                   for(int i = 2; i <= listM2.size() -1 ; i++){
+                       if (listM2.get(i).getPrix() <=rechargeM){
                         FlistM.add(listM2.get(i));
-                           recharge = recharge - listM2.get(i).getPrix();
+                        rechargeM = rechargeM - listM2.get(i).getPrix();
                            c++;
                            i = listM2.size();
                        }
                    }
 
-                   for(int i = 0; i <= listM3.size() -1 ; i++){
-                       if (listM3.get(i).getPrix() < recharge){
+                   for(int i = 3; i <= listM3.size() -1 ; i++){
+                       if (listM3.get(i).getPrix() <=rechargeM){
                         FlistM.add(listM3.get(i));
-                           recharge = recharge - listM3.get(i).getPrix();
+                        rechargeM = rechargeM - listM3.get(i).getPrix();
                            c++;
                            i = listM3.size();
                        }
                    }
                    
-               }while(recharge!=0 && c!=0);
-                
-               System.out.println(FlistH);
-               //System.out.println(FlistM);
-              
+               }while(rechargeM!=0 && c!=0);
+               FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
                
             }
             if(tabPriorite[2] > tabPriorite[0] && tabPriorite[0] > tabPriorite[1]){
-                
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triData(minListHemle));
+                listM1.addAll(Tri.triData(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triSms(minListHemle));
+                listM3.addAll(Tri.triSms(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             
+                             i = listH2.size();
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             
+                             i = listH3.size();
+                         }
+                     }
+                 }while(rechargeH!=0 && c!=0);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
             }
+        }
+        
+
+         if (prioriteAppel == prioriteData && prioriteAppel == prioriteSms && prioriteData == prioriteSms){
+            if(prioriteAppel == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 2){
+            List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triData(minListHemle));
+                listM1.addAll(Tri.triData(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triSms(minListHemle));
+                listM3.addAll(Tri.triSms(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             
+                             i = listH2.size();
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             
+                             i = listH3.size();
+                         }
+                     }
+                 }while(rechargeH!=0 && c!=0);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
          }
+
+         if(prioriteAppel == 1){
+            List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triData(minListHemle));
+                listM1.addAll(Tri.triData(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triSms(minListHemle));
+                listM3.addAll(Tri.triSms(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             
+                             i = listH2.size();
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             
+                             i = listH3.size();
+                         }
+                     }
+                 }while(rechargeH!=0 && c!=0);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+         }
+
+         if(prioriteAppel == 0){
+            List <Forfait> FlistH = new ArrayList<Forfait>();
+            reponse.setReturnValue(FlistH);
+               return reponse;
+         }
+
+        }
+
+        if (prioriteAppel == prioriteData && prioriteSms != prioriteAppel){
+            if(prioriteAppel == 3 && prioriteSms == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 3 && prioriteSms == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 3 && prioriteSms == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 2 && prioriteSms == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 2 && prioriteSms == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 2 && prioriteSms == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 1 && prioriteSms == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 1 && prioriteSms == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 1 && prioriteSms == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+ 
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+ 
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 0 && prioriteSms == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 0 && prioriteSms == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+            if(prioriteAppel == 0 && prioriteSms == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }            
+            
+        }
+
+        if (prioriteSms == prioriteData && prioriteAppel != prioriteSms){
+            if(prioriteSms == 3 && prioriteAppel == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 3 && prioriteAppel == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 3 && prioriteAppel == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 2 && prioriteAppel == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 2 && prioriteAppel == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 2 && prioriteAppel == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 1 && prioriteAppel == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 1 && prioriteAppel == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 1 && prioriteAppel == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 0 && prioriteAppel == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triAppel(minListHemle));
+                listM1.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 0 && prioriteAppel == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triAppel(minListHemle));
+                listM1.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 0 && prioriteAppel == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triAppel(minListHemle));
+                listM1.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+
+        }
+
+
+        if (prioriteSms == prioriteAppel && prioriteData != prioriteSms){
+            if(prioriteSms == 3 && prioriteData == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triAppel(minListHemle));
+                listM3.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 3 && prioriteData == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 3 && prioriteData == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 2 && prioriteData == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triAppel(minListHemle));
+                listM3.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 2 && prioriteData == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 2 && prioriteData == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 1 && prioriteData == 0){
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH2.addAll(Tri.triSms(minListHemle));
+                listM2.addAll(Tri.triSms(minListMango));
+                listH3.addAll(Tri.triAppel(minListHemle));
+                listM3.addAll(Tri.triAppel(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 1 && prioriteData == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 2; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 2; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 1 && prioriteData == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                List <Forfait> listH2 = new ArrayList<Forfait>();
+                List <Forfait> listM2 = new ArrayList<Forfait>();
+                List <Forfait> listH3 = new ArrayList<Forfait>();
+                List <Forfait> listM3 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triSms(minListHemle));
+                listM1.addAll(Tri.triSms(minListMango));
+                listH2.addAll(Tri.triAppel(minListHemle));
+                listM2.addAll(Tri.triAppel(minListMango));
+                listH3.addAll(Tri.triData(minListHemle));
+                listM3.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 3; i <= listH2.size() -1 ; i++){
+                         if (listH2.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH2.get(i));
+                             rechargeH = rechargeH - listH2.get(i).getPrix();
+                             c++;
+                             i = listH2.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+        
+                     for(int i = 0; i <= listH3.size() -1 ; i++){
+                         if (listH3.get(i).getPrix() <=rechargeH){
+                             FlistH.add(listH3.get(i));
+                             rechargeH = rechargeH - listH3.get(i).getPrix();
+                             c++;
+                             i = listH3.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+        
+                    for(int i = 3; i <= listM2.size() -1 ; i++){
+                        if (listM2.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM2.get(i));
+                         rechargeM = rechargeM - listM2.get(i).getPrix();
+                            c++;
+                            i = listM2.size();
+                        }
+                    }
+        
+                    for(int i = 0; i <= listM3.size() -1 ; i++){
+                        if (listM3.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM3.get(i));
+                         rechargeM = rechargeM - listM3.get(i).getPrix();
+                            c++;
+                            i = listM3.size();
+                        }
+                    }
+                    
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 0 && prioriteData == 1){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triData(minListHemle));
+                listM1.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 3; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 3; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 0 && prioriteData == 2){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triData(minListHemle));
+                listM1.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 2; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 2; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+            if(prioriteSms == 0 && prioriteData == 3){
+                List <Forfait> listH1 = new ArrayList<Forfait>();
+                List <Forfait> listM1 = new ArrayList<Forfait>();
+                listH1.addAll(Tri.triData(minListHemle));
+                listM1.addAll(Tri.triData(minListMango));
+                List <Forfait> FlistH = new ArrayList<Forfait>();
+                List <Forfait> FlistM = new ArrayList<Forfait>();
+                double rechargeH = montant;
+                double rechargeM = montant;
+                 int c;
+                 do {
+                      c = 0;
+                     for(int i = 0; i <= listH1.size() -1 ; i++){
+                         if (listH1.get(i).getPrix() <= rechargeH){
+                            FlistH.add(listH1.get(i));
+                            rechargeH = rechargeH - listH1.get(i).getPrix();
+                             c++;
+                             i = listH1.size();
+                             System.out.println(rechargeH);
+                         }
+                     }
+                 }while(rechargeH > 0 && c!=0);
+                 System.out.println(FlistH);
+                 
+                 do {
+                     c = 0;
+                    for(int i = 0; i <= listM1.size() -1 ; i++){
+                        if (listM1.get(i).getPrix() <=rechargeM){
+                         FlistM.add(listM1.get(i));
+                         rechargeM = rechargeM - listM1.get(i).getPrix();
+                            c++;
+                            i = listM1.size();
+                        }
+                    }
+                }while(rechargeM!=0 && c!=0);
+                FlistH.addAll(FlistM);
+               reponse.setReturnValue(FlistH);
+               return reponse;
+            }
+        
+        }
 
         
 
         return reponse;
 
         }
-}
+
+
+    @CrossOrigin
+    @PostMapping("/test/{montant}/{dure}/{prioriteData}/{prioriteSms}/{prioriteAppel}")
+    public Response test(@PathVariable("montant") double montant, @PathVariable("dure")double dure,
+    @PathVariable("prioriteData")double prioriteData, @PathVariable("prioriteSms")double prioriteSms,
+    @PathVariable("prioriteAppel")double prioriteAppel){
+        Response reponse = new Response();
+        double nbreRepJuste;
+        double nbreRepAtt;
+        double nbreRepObtenu;
+
+
+
+        return reponse;
+
+    }
+
+
+
+    }
+
